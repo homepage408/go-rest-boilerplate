@@ -25,6 +25,7 @@ type RedisConfig struct {
 	Addr     string `mapstructure:"addr"`
 	Password string `mapstructure:"password"`
 	DB       int    `mapstructure:"db"`
+	URL      string `mapstructure:"url"`
 }
 
 type RabbitMQConfig struct {
