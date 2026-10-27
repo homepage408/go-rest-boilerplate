@@ -2,11 +2,13 @@ package config
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strconv"
 	"time"
 
 	duration "github.com/homepage408/go-rest-boilerplate/pkg/duration"
+	"github.com/joho/godotenv"
 )
 
 type ServerConfig struct {
@@ -50,6 +52,12 @@ type Config struct {
 }
 
 func Load() (*Config, error) {
+
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env:", err)
+	}
+
 	cfg := &Config{}
 
 	cfg.LogLevel = os.Getenv("LOG_LEVEL")
@@ -61,8 +69,8 @@ func Load() (*Config, error) {
 	cfg.Database.DSN = os.Getenv("DATABASE_DSN")
 
 	// apps
-	cfg.Server.AppName = os.Getenv("APPS_NAME")
-	port, err := strconv.Atoi(os.Getenv("PORT"))
+	cfg.Server.AppName = os.Getenv("APP_NAME")
+	port, err := strconv.Atoi(os.Getenv("APP_PORT"))
 	if err != nil {
 		return cfg, errors.New("failed to parse 'PORT': invalid integer format")
 	}

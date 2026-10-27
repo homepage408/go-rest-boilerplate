@@ -29,16 +29,16 @@ func New(ctx context.Context, cfg config.Config) (*Application, func(), error) {
 	}
 
 	// Redis
-	_, err = infrastructure.InitRedis(ctx, cfg.Redis.URL)
-	if err != nil {
-		return nil, nil, err
-	}
+	// _, err = infrastructure.InitRedis(ctx, cfg.Redis.URL)
+	// if err != nil {
+	// 	return nil, nil, err
+	// }
 
 	// message broker (Rabbit Mq)
-	_, err = infrastructure.InitRabbitMQ(cfg.RabbitMq.URL)
-	if err != nil {
-		return nil, nil, err
-	}
+	// _, err = infrastructure.InitRabbitMQ(cfg.RabbitMq.URL)
+	// if err != nil {
+	// 	return nil, nil, err
+	// }
 
 	app := &Application{
 		cfg: cfg,
