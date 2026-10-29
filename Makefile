@@ -1,3 +1,8 @@
+.PHONY: run build test sqlc gqlgen migrate-up migrate-down
+
+include .env
+export
+
 run:
 	go run cmd/api/main.go
 
@@ -13,12 +18,13 @@ sqlc:
 gqlgen:
 	go run github.com/99designs/gqlgen@v0.17.90 generate
 
+
 migrate-up:
 	migrate -path db/migrations \
-	-database "postgres://postgres:postgres@localhost:5432/syncra?sslmode=disable" \
-	up
+		-database "$(DATABASE_URL)" \
+		up
 
 migrate-down:
 	migrate -path db/migrations \
-	-database "postgres://postgres:postgres@localhost:5432/syncra?sslmode=disable" \
-	down
+		-database "$(DATABASE_URL)" \
+		down
