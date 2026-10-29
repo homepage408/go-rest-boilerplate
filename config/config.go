@@ -66,7 +66,7 @@ func Load() (*Config, error) {
 	}
 
 	// database
-	cfg.Database.DSN = os.Getenv("DATABASE_DSN")
+	cfg.Database.DSN = os.Getenv("DATABASE_URL")
 
 	// apps
 	cfg.Server.AppName = os.Getenv("APP_NAME")
